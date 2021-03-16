@@ -21,6 +21,9 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var addRouter = require('./routes/add');
 var del = require('./routes/del');
+
+//recordList
+var recordList = require('./routes/record/list');
 // 创建用户
 var user_reg = require('./routes/userreg');
 //登陆
@@ -43,6 +46,9 @@ app.use('/del', del);
 app.use('/userreg', user_reg);
 //登陆
 app.use('/login', login);
+
+//recordList
+app.use('/v1/record/list', recordList);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -57,6 +63,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
+}).listen(8888);
+console.log('服务器开启成功');
 module.exports = app;
